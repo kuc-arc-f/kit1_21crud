@@ -34,7 +34,7 @@ if(typeof(window) !== "undefined"){
 </script>
 
 <div class="container my-2">
-	<h1>Chat</h1>
+	<h1>Crud</h1>
 	<hr />
 	<a href={`/crud/create`} class="btn btn-primary">Create
 	</a>

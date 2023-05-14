@@ -37,6 +37,36 @@ console.log(item);
 if(typeof(window) !== "undefined") {
 	initProc();
 }
+/**
+*
+* @param
+*
+* @return
+*/
+
+/**
+ * deleteItem
+ * @param
+ *
+ * @return
+ */ 
+ async function deleteItem(){
+	try {
+		const item = {
+			id: Number(data.id),
+		}
+//console.log(item);
+    const json = await HttpCommon.server_post(item, "/todos/delete");
+console.log(json);
+        if(json.ret !== LibConfig.OK_CODE) {
+            throw new Error("Error, delete");
+        } else {
+            window.location.href = '/crud'
+        }
+	} catch (error) {
+	    console.error(error);
+	}
+}
 </script>
 
 <!-- CSS -->
@@ -49,6 +79,8 @@ if(typeof(window) !== "undefined") {
     ID: {data.id}
     <hr class="my-1" />
     name: {item.title}
+    <hr />
+    <button on:click={deleteItem} class="btn btn-danger my-2">Delete</button>
 </div>
 
 <!--
