@@ -1,39 +1,17 @@
 <svelte:head>
-	<title>Posts</title>
+	<title>Edit</title>
 	<meta name="description" content="About this app" />
 </svelte:head>
 
 <script lang="ts">
 import LibConfig from '$lib/LibConfig';
 import HttpCommon from '$lib/HttpCommon';
-//import { PUBLIC_API_URL } from '$env/static/public'
 
 /** @type {import('./$types').PageData} */
 export let data: any;
 console.log(data);
-/**
-* init proc: 開始
-* @param
-*
-* @return
-*/
-const initProc = async function () {
-	try{
-        let postItem: any = {
-        	"id": data.id
-        };        
-        const json = await HttpCommon.server_post(postItem, "/todos/get");
-        const item = json.data;
-		data.title = item.title;
-console.log(item);
 
-	} catch (e) {
-      console.error(e);
-      //alert("error, ");
-    }
-}
 if(typeof(window) !== "undefined") {
-	initProc();
 }
 /**
  * savePost
@@ -49,8 +27,7 @@ const savePost = async function () {
 			content : '',
 			id: Number(data.id),
 		}
-console.log(item);
-//return;
+//console.log(item);
 		const json = await HttpCommon.server_post(item, "/todos/update");
 		console.log(json);
 		if(json.ret !== 'OK'){
@@ -62,20 +39,9 @@ console.log(item);
 		console.error(error);
 	} 
 }
-/**
- * deleteItem
- * @param
- *
- * @return
- */ 
-async function deleteItem(){
-	try {
-	} catch (error) {
-		console.error(error);
-	}
-}
 </script>
 
+<!-- MarkUp -->
 <div class="container my-2">
 	<a href={`/crud`} class="btn">[ Back ]
 	</a>		
@@ -85,7 +51,7 @@ async function deleteItem(){
 	<div class="col-sm-6">
 		<label>Title:</label>
         <input type="text" name="title" id="title" class="form-control"
-		 value= {data.title}  />		
+		 value= {data.item.title}  />		
 	</div>
 	<button on:click={savePost} class="btn btn-primary my-2">Save</button>
 </div>

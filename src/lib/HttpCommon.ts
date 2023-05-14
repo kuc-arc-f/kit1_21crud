@@ -2,6 +2,7 @@
 import LibConfig from './LibConfig';
 import { PUBLIC_API_KEY } from '$env/static/public'
 import { PUBLIC_API_URL } from '$env/static/public'
+import { PUBLIC_INTERNAL_URL } from '$env/static/public'
 //
 const HttpCommon = {
   /**
@@ -13,7 +14,6 @@ const HttpCommon = {
   post: async function(item: any, path: string): Promise<any>
   {
     try {
-//      const url = import.meta.env.PUBLIC_API_URL;
       const apiKey = PUBLIC_API_KEY;
       item.api_key = apiKey;
       const body: any = JSON.stringify(item);		
@@ -44,13 +44,13 @@ const HttpCommon = {
   server_post: async function(item: any, path: string): Promise<any>
   {
     try {
-      const url = PUBLIC_API_URL;
+      const serverUrl = PUBLIC_INTERNAL_URL;
       const apiKey = PUBLIC_API_KEY;
 //console.log("#getList.apiKey=" + apiKey);
       item.api_key = apiKey;
       item.path = path;
       const body: any = JSON.stringify(item);	
-      const res = await fetch("/api/api_send", {
+      const res = await fetch(serverUrl + "/api/api_send", {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},      
         body: body

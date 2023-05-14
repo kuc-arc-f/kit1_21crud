@@ -1,5 +1,5 @@
 <svelte:head>
-	<title>Posts</title>
+	<title>Crud</title>
 	<meta name="description" content="About this app" />
 </svelte:head>
 

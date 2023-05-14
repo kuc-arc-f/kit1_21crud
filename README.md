@@ -20,13 +20,18 @@ SvelteKit + Cloudflare D1, CRUD sample
 npm install
 ```
 ***
-* .env, set
+* .env
+
+* PUBLIC_API_URL: API
+* PUBLIC_INTERNAL_URL :internal Server
 
 ```
 PUBLIC_BASIC_AUTH_USER = "hoge"
 PUBLIC_BASIC_AUTH_PASSWORD = "1111"
 
 PUBLIC_API_URL=http://localhost:8787
+PUBLIC_INTERNAL_URL="http://localhost:5173"
+
 PUBLIC_API_KEY="hoge123"
 ```
 

@@ -1,41 +1,21 @@
 <svelte:head>
-<title>Posts</title>
+<title>Show</title>
 <meta name="description" content="About this app" />
 </svelte:head>
 
 <script lang="ts">
 import LibConfig from '$lib/LibConfig';
 import LibAuth from '$lib/LibAuth';
-import LibCommon from '$lib/LibCommon';
+//import LibCommon from '$lib/LibCommon';
 import HttpCommon from '$lib/HttpCommon';
 //
 /** @type {import('./$types').PageData} */
 export let data: any, item: any= {}, post_id = 0;
 //
 console.log("[id]start");
-console.log(data);
-/**
-* init proc: 開始
-* @param
-*
-* @return
-*/
-const initProc = async function () {
-	try{
-        let postItem: any = {
-        "id": data.id
-        };        
-        const json = await HttpCommon.server_post(postItem, "/todos/get");
-        item = json.data;
-console.log(item);
-
-	} catch (e) {
-      console.error(e);
-      //alert("error, ");
-    }
-}
+console.log(data.id);
+//console.log(data.item);
 if(typeof(window) !== "undefined") {
-	initProc();
 }
 /**
 *
@@ -75,10 +55,10 @@ console.log(json);
 
 <!-- MarkUp -->
 <div class="container my-2">
-    <h1>{item.id}</h1>
-    ID: {data.id}
+    <h1>{data.id}</h1>
+    ID: {data.item.id}
     <hr class="my-1" />
-    name: {item.title}
+    name: {data.item.title}
     <hr />
     <button on:click={deleteItem} class="btn btn-danger my-2">Delete</button>
 </div>

@@ -11,8 +11,8 @@ export async function POST({ request }) {
       headers: {'Content-Type': 'application/json'},      
       body: sendBody
     });
-    const reaObj = await res.json();
+    const resObj = await res.json();
 //console.log("#json"); 
 //console.log(json);    
-    return json(reaObj);
+    return json(resObj);
 }

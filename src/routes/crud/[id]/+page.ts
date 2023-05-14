@@ -1,9 +1,10 @@
+//export const csr = false;
+
 import { error } from '@sveltejs/kit';
 import LibConfig from '$lib/LibConfig';
 import LibAuth from '$lib/LibAuth';
-import LibDbSession from '$lib/LibDbSession';
-import ChatPost from '../ChatPost';
-import Chat from '../Chat';
+//import LibDbSession from '$lib/LibDbSession';
+import HttpCommon from '$lib/HttpCommon';
 //type
 type IPostItem = {
   id: number,
@@ -17,11 +18,14 @@ type IPostItem = {
 export async function load({ params}) {
   try{
     console.log("id=", params.id);
-//    const item = await Chat.get(Number(params.id))
-//console.log(item);
+    let postItem: any = {
+      "id": params.id
+    }; 
+    const json = await HttpCommon.server_post(postItem, "/todos/get");
+console.log(json);
     return {
         id: params.id,
-        item: {},
+        item: json.data,
     };  
   } catch (e) {
     console.error(e);
